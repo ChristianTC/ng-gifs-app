@@ -25,7 +25,12 @@ export class GifsService {
       this._tagsHistory = this._tagsHistory.filter(oldTag=>oldTag!==tag)
     }
     this._tagsHistory.unshift(tag)
-    this._tagsHistory = this._tagsHistory.splice(0,10)
+    this._tagsHistory = this._tagsHistory.splice(0,10);
+    this.saveLocalStorage()
+  }
+
+  private saveLocalStorage():void {
+    localStorage.setItem('history', JSON.stringify(this._tagsHistory))
   }
 
   searchTag(tag: string):void {
